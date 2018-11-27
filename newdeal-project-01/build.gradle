@@ -2,7 +2,7 @@
 plugins {
     id 'java' //자바 컴파일
     id 'application' //어플리케이션 자동 실행
-    id 'eclipse'
+    id 'eclipse' //이클립스에서 import 가능하게 해줌  .classpath, .project, /settings 폴더의 역할
 }
 
 repositories {
