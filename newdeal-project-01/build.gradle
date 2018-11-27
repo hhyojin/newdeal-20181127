@@ -1,0 +1,17 @@
+
+plugins {
+    id 'java' //자바 컴파일
+    id 'application' //어플리케이션 자동 실행
+    id 'eclipse'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation 'com.google.guava:guava:26.0-jre'
+    testImplementation 'junit:junit:4.12'
+}
+
+mainClassName = 'bitcamp.newdeal.lms.App'
