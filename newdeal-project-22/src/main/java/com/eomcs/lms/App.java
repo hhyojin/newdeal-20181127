@@ -9,11 +9,9 @@ public class App {
   static Scanner keyboard = new Scanner(System.in);
 
   public static void main(String[] args) {
-    
-    LessonHandler.keyboard = keyboard;
-    MemberHandler.keyboard = keyboard;
-    BoardHandler.keyboard = keyboard;
-    
+       
+    MemberHandler memberHandler = new MemberHandler(keyboard);
+    LessonHandler lessonHandler = new LessonHandler(keyboard);
     BoardHandler b1 = new BoardHandler(keyboard);
     BoardHandler b2 = new BoardHandler(keyboard);
     
@@ -21,16 +19,16 @@ public class App {
       String command = prompt();
 
       if (command.equals("/lesson/add")) {
-        LessonHandler.addLesson();
+        lessonHandler.addLesson();
         
       } else if (command.equals("/lesson/list")) {
-        LessonHandler.listLesson();
+        lessonHandler.listLesson();
       
       } else if (command.equals("/member/add")) {
-        MemberHandler.addMember();
+        memberHandler.addMember();
         
       } else if (command.equals("/member/list")) {
-        MemberHandler.listMember();
+        memberHandler.listMember();
         
       } else if (command.equals("/board/add")) {
         b1.addBoard();
