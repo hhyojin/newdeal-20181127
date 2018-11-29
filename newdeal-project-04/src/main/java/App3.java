@@ -8,22 +8,22 @@ public class App3 {
 
     final int LENGTH = 10;
     
-    int[] no = new int[LENGTH];
-    String[] contents = new String[LENGTH];
-    Date[] createdDate = new Date[LENGTH];
-    int[] viewCount = new int[LENGTH];
+    Board[] board = new Board[LENGTH];
     
     int i = 0;
     while (i < LENGTH) {
+      
+      board[i] = new Board();
+      
       System.out.print("번호? ");
-      no[i] = Integer.parseInt(keyboard.nextLine());
+      board[i].no = Integer.parseInt(keyboard.nextLine());
       
       System.out.print("내용? ");
-      contents[i] = keyboard.nextLine();
+      board[i].contents = keyboard.nextLine();
       
-      createdDate[i] = new Date(System.currentTimeMillis()); 
+      board[i].createdDate = new Date(System.currentTimeMillis()); 
       
-      viewCount[i] = 0;
+      board[i].viewCount = 0;
       
       i++;
       
@@ -44,7 +44,10 @@ public class App3 {
     // 배열에 입력한 개수만큼 출력한다.
     for (int j = 0; j < i; j++) {
       System.out.printf("%3d, %-20s, %s, %d\n", 
-          no[j], contents[j], createdDate[j], viewCount[j]);
+          board[j].no, 
+          board[j].contents, 
+          board[j].createdDate, 
+          board[j].viewCount);
     }
   }
 }
