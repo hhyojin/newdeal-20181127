@@ -42,3 +42,19 @@
 ## 24 : 생성자와 setter/getter
   
   github.com/eomcs/eomcs-java-project/tree/master/eomcs-java-project-2.4 과제 해결
+  
+## 25 : 데이터 처리 코드를 별도의 클래스로 분리
+  
+  github.com/eomcs/eomcs-java-project/tree/master/eomcs-java-project-2.5 과제 해결
+  
+## 26 : 다형성, 다형적  변수, 제네릭
+  
+  github.com/eomcs/eomcs-java-project/tree/master/eomcs-java-project-2.6, 2.7 과제 해결
+  
+## 32 : 인터페이스로 규칙 정의하기, Iterator 디자인 패턴, 중첩 클래스 사용
+  
+  github.com/eomcs/eomcs-java-project/tree/master/eomcs-java-project-3.2, 3.3 과제 해결
+  
+## 34 : 자바 컬렉션 API 사용하기, Command 디자인 패턴, 예외처리
+  
+  github.com/eomcs/eomcs-java-project/tree/master/eomcs-java-project-3.4, 3.5 과제 해결
