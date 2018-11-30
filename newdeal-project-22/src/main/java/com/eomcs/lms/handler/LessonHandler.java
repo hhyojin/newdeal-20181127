@@ -5,12 +5,17 @@ import com.eomcs.lms.domain.Lesson;
 
 public class LessonHandler {
 
-  public static Scanner keyboard;
+  public Scanner keyboard;
   static final int LENGTH = 10;
   static Lesson[] lessons = new Lesson[LENGTH];
   static int lessonIdx = 0;
   
-  public static void listLesson() {
+  public LessonHandler(Scanner keyboard) {
+    this.keyboard = keyboard;
+  }
+  
+  
+  public void listLesson() {
     for (int j = 0; j < lessonIdx; j++) {
       System.out.printf("%3d, %-15s, %10s ~ %10s, %4d\n", 
           lessons[j].no, lessons[j].title, lessons[j].startDate, 
@@ -18,7 +23,7 @@ public class LessonHandler {
     }
   }
 
-  public static void addLesson() {
+  public void addLesson() {
     Lesson lesson = new Lesson();
 
     System.out.print("번호? ");
