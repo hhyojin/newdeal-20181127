@@ -16,6 +16,11 @@ import com.eomcs.lms.handler.LessonDeleteCommand;
 import com.eomcs.lms.handler.LessonDetailCommand;
 import com.eomcs.lms.handler.LessonListCommand;
 import com.eomcs.lms.handler.LessonUpdateCommand;
+import com.eomcs.lms.handler.MemberAddCommand;
+import com.eomcs.lms.handler.MemberDeleteCommand;
+import com.eomcs.lms.handler.MemberDetailCommand;
+import com.eomcs.lms.handler.MemberListCommand;
+import com.eomcs.lms.handler.MemberUpdateCommand;
 
 public class App {
 
@@ -35,13 +40,13 @@ public class App {
     commandMap.put("/lesson/list", new LessonListCommand(keyboard));
     commandMap.put("/lesson/detail", new LessonDetailCommand(keyboard));
     commandMap.put("/lesson/update", new LessonUpdateCommand(keyboard));
-   /* commandMap.put("/lesson/delete", new LessonDeleteCommand(keyboard));*/
+    commandMap.put("/lesson/delete", new LessonDeleteCommand(keyboard));
 
-   /* commandMap.put("/member/add", new MemberAddCommand(keyboard, memberList));
-    commandMap.put("/member/list", new MemberListCommand(keyboard, memberList));
-    commandMap.put("/member/detail", new MemberDetailCommand(keyboard, memberList));
-    commandMap.put("/member/update", new MemberUpdateCommand(keyboard, memberList));
-    commandMap.put("/member/delete", new MemberDeleteCommand(keyboard, memberList));*/
+    commandMap.put("/member/add", new MemberAddCommand(keyboard));
+    commandMap.put("/member/list", new MemberListCommand(keyboard));
+    commandMap.put("/member/detail", new MemberDetailCommand(keyboard));
+    commandMap.put("/member/update", new MemberUpdateCommand(keyboard));
+    commandMap.put("/member/delete", new MemberDeleteCommand(keyboard));    
     
     commandMap.put("/board/list", new BoardListCommand(keyboard));
     commandMap.put("/board/detail", new BoardDetailCommand(keyboard));

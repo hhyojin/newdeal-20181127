@@ -69,7 +69,7 @@ public class LessonUpdateCommand implements Command {
       System.out.printf("총수업시간(%s)? \n", oldTotalHours);
       System.out.print("총수업시간? ");
       String tot_hr = keyboard.nextLine();      
-      if (tot_hr == "") {tot_hr = oldTotalHours; }
+      if (tot_hr.equals("")) {tot_hr = oldTotalHours; }
       
       System.out.printf("일수업시간(%s)? \n", oldDayHours);
       System.out.print("일수업시간? ");
@@ -85,8 +85,8 @@ public class LessonUpdateCommand implements Command {
       //SQL을 서버에 전송. select를 제외하고는 모두 executeUpadte 사용.resultSet 노 쓸모
       stmt.executeUpdate("update lesson set title='" + title + "',"
           + " cont='" + content + "',"
-          + " sdt=" + sdt + ","
-          + " edt=" + edt + ","
+          + " sdt='" + sdt + "',"
+          + " edt='" + edt + "',"
           + " tot_hr=" + tot_hr + ","
           + " day_hr=" + day_hr + ","
           + " mno=" + mno
@@ -109,8 +109,4 @@ public class LessonUpdateCommand implements Command {
    
   }
 
-  private String transFormat(Date date) {
-    // TODO Auto-generated method stub
-    return null;
-  }
 }

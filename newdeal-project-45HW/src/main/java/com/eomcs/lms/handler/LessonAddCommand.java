@@ -25,9 +25,6 @@ public class LessonAddCommand implements Command {
       DriverManager.registerDriver(new Driver()); 
       con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/studydb", "study", "1111");
       stmt = con.createStatement();
-            
-      System.out.print("수업번호? ");
-      String no = keyboard.nextLine();
 
       System.out.print("수업명? ");
       String title = keyboard.nextLine();
@@ -51,8 +48,8 @@ public class LessonAddCommand implements Command {
       String mno = keyboard.nextLine();
       
       //SQL을 서버에 전송. select를 제외하고는 모두 executeUpadte 사용.resultSet 노 쓸모
-      stmt.executeUpdate("insert into lesson (lno, title, cont, sdt, edt, tot_hr, day_hr, mno)"
-                        + " values(" + no + ", " + "'" + title +"', '" + contents + "', '" 
+      stmt.executeUpdate("insert into lesson (title, cont, sdt, edt, tot_hr, day_hr, mno)"
+                        + " values('" + title +"', '" + contents + "', '" 
                         + startDate + "', '" + endDate + "', " + totalHours + ", " 
                         + dayHours + ", " + mno +")");
 
