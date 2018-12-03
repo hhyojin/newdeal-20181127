@@ -1,0 +1,60 @@
+# newdeal-20181128
+
+## 01 : Maven 기본 자바 프로젝트 폴더 준비
+
+## 02 : 리터럴(literal), 변수(variables), 키보드 입력 사용
+
+ github.com/eomcs/eomcs-java-project/tree/master/eomcs-java-project-1.4 과제 해결
+ 
+## 03 : 배열과 흐름제어문(if switch 분기문, 반복문)
+ 
+  github.com/eomcs/eomcs-java-project/tree/master/eomcs-java-project-1.5 과제 해결
+  
+## 04 : 클래스와 데이터 타입
+  클래스 용도: 1 자료형 만들기, 2 메소드 나누기
+  
+  github.com/eomcs/eomcs-java-project/tree/master/eomcs-java-project-1.6 과제 해결
+  
+## 05 : 자바 기본 문법(흐름제어문) 활용
+  
+  github.com/eomcs/eomcs-java-project/tree/master/eomcs-java-project-1.7 과제 해결
+  
+## 06 : static을 이용한 메소드 분리
+  
+  github.com/eomcs/eomcs-java-project/tree/master/eomcs-java-project-1.8 과제 해결
+  
+## 07 : 클래스로 메서드를 분류하기
+  
+  github.com/eomcs/eomcs-java-project/tree/master/eomcs-java-project-1.9 과제 해결
+  
+## 08 : 패키지를 사용하여 역할에 따라 클래스 분류
+  
+  github.com/eomcs/eomcs-java-project/tree/master/eomcs-java-project-2.0 과제 해결
+  
+## 21 : 클래스 변수와 클래스 메소드의 한계를 경험
+  
+  github.com/eomcs/eomcs-java-project/tree/master/eomcs-java-project-2.1 과제 해결
+  
+## 22 : 인스턴스 변수와 인스턴스 메소드가 필요한 이유
+  
+  github.com/eomcs/eomcs-java-project/tree/master/eomcs-java-project-2.2 과제 해결
+  
+## 24 : 생성자와 setter/getter
+  
+  github.com/eomcs/eomcs-java-project/tree/master/eomcs-java-project-2.4 과제 해결
+  
+## 25 : 데이터 처리 코드를 별도의 클래스로 분리
+  
+  github.com/eomcs/eomcs-java-project/tree/master/eomcs-java-project-2.5 과제 해결
+  
+## 26 : 다형성, 다형적  변수, 제네릭
+  
+  github.com/eomcs/eomcs-java-project/tree/master/eomcs-java-project-2.6, 2.7 과제 해결
+  
+## 32 : 인터페이스로 규칙 정의하기, Iterator 디자인 패턴, 중첩 클래스 사용
+  
+  github.com/eomcs/eomcs-java-project/tree/master/eomcs-java-project-3.2, 3.3 과제 해결
+  
+## 34 : 자바 컬렉션 API 사용하기, Command 디자인 패턴, 예외처리
+  
+  github.com/eomcs/eomcs-java-project/tree/master/eomcs-java-project-3.4, 3.5 과제 해결
