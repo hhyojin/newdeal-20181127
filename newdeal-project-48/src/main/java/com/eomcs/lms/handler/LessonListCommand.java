@@ -22,14 +22,15 @@ public class LessonListCommand implements Command {
      
       for (Lesson lesson : list) {
         System.out.printf("%d, %s, %s, %s, %d\n", 
-            lesson.getNo();
-            lesson.getTitle();
-            lesson.getStartDate();
-            lesson.getEndDate();
-            lesson.getTotalHours();
+            lesson.getNo(),
+            lesson.getTitle(),
+            lesson.getStartDate(),
+            lesson.getEndDate(),
+            lesson.getTotalHours()
             );
       }
     }catch (Exception e) {
       e.printStackTrace();
     }
+}
 }

@@ -1,101 +1,75 @@
 package com.eomcs.lms.handler;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.Scanner;
-import org.mariadb.jdbc.Driver;
+import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
 
 public class MemberUpdateCommand implements Command {
   
   Scanner keyboard;
+  MemberDao memberdao;
   
-  public MemberUpdateCommand(Scanner keyboard) {
+  public MemberUpdateCommand(Scanner keyboard, MemberDao memberdao) {
     this.keyboard = keyboard;
+    this.memberdao = memberdao;
   }
   
   @Override
   public void execute() {
-    Connection con = null;
-    Statement stmt = null;
-
-
+    
     try {
-      DriverManager.registerDriver(new Driver()); 
-      con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/studydb", "study", "1111");
-      stmt = con.createStatement();
-
-      System.out.print("회원번호");
-      String mno = keyboard.nextLine();
-
-      ResultSet rs = stmt.executeQuery("select mno, name, email, pwd, photo, tel, cdt"
-                                  + " from member"
-                                  + " where mno=" + mno);
-
-      rs.next();
-      SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-      String oldName = rs.getString("name");
-      String oldEmail = rs.getString("email");
-      String oldPwd = rs.getString("pwd");
-      String oldPhoto = rs.getString("photo");
-      String oldTel = rs.getString("tel");
-      String oldCdt= transFormat.format(rs.getDate("cdt"));
-      rs.close();
+      System.out.print("회원 번호");
+      int no = Integer.parseInt(keyboard.nextLine());
+      
+      Member member = new Member();
+      member = memberdao.findByNo(no);
+      
+      String oldName = member.getName();
+      String oldEmail = member.getEmail();
+      String oldPwd = member.getPassword();
+      String oldPhoto = member.getPhoto();
+      String oldTel = member.getTel();
 
       System.out.printf("이름(%s)? \n", oldName);
       System.out.print("이름? ");
       String name = keyboard.nextLine();      
-      if (name.equals("")) {name = oldName; }
+      if (name.equals("")) {member.setName(oldName);}
+      else member.setName(name);
       
       System.out.printf("이메일(%s)? \n", oldEmail);
       System.out.print("이메일? ");
       String email = keyboard.nextLine();      
-      if (email.equals("")) {email = oldEmail; }
+      if (email.equals("")) {member.setEmail(oldEmail); }
+      else member.setEmail(email);
       
       System.out.printf("비밀번호(%s)? \n", oldPwd);
       System.out.print("비밀번호? ");
       String pwd = keyboard.nextLine();      
-      if (pwd.equals("")) {pwd = oldPwd; }
+      if (pwd.equals("")) {member.setPassword(oldPwd); }
+      else member.setPassword(pwd);
       
       System.out.printf("사진(%s)? \n", oldPhoto);
       System.out.print("사진? ");
       String photo = keyboard.nextLine();      
-      if (photo.equals("")) {photo = oldPhoto; }
+      if (photo.equals("")) {member.setPhoto(oldPhoto); }
+      else member.setPhoto(photo);
       
       System.out.printf("전화(%s)? \n", oldTel);
       System.out.print("전화? ");
       String tel = keyboard.nextLine();      
-      if (tel.equals("")) {tel = oldTel; }
+      if (tel.equals("")) {member.setTel(oldTel);}
+      else member.setTel(tel);
       
-      System.out.printf("일수업시간(%s)? \n", oldCdt);
-      System.out.print("일수업시간? ");
-      String cdt = keyboard.nextLine();      
-      if (cdt.equals("")) {cdt = oldCdt; }
-      
-      //SQL을 서버에 전송. select를 제외하고는 모두 executeUpadte 사용.resultSet 노 쓸모
-      stmt.executeUpdate("update member set name='" + name + "',"
-          + " email='" + email + "',"
-          + " pwd='" + pwd + "',"
-          + " photo='" + photo + "',"
-          + " tel='" + tel + "',"
-          + " cdt='" + cdt + "'"
-          + " where mno=" + mno);
+      int result = memberdao.update(member);
 
-
-      //DBMS에서 한 개의 레코드를 가져올 필요 없음
-      System.out.println("변경했습니다.");
+      if(result > 0) {
+        System.out.println("변경했습니다.");
+      } else System.out.println("해당 번호의 회원이 없습니다.");
 
     }catch (Exception e) {
       e.printStackTrace();
     }
-
-    finally {
-      //접속을 끊을 때는 접속과 반대로. 다만 각각의 단계에 모두 try catch 해줘야 함
-      try {stmt.close();} catch(Exception e) {}
-      try {con.close();} catch(Exception e) {}
-    }    
+  
   }
 }

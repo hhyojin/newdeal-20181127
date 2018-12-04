@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.util.Stack;
 import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.dao.LessonDao;
+import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.handler.BoardAddCommand;
 import com.eomcs.lms.handler.BoardDeleteCommand;
 import com.eomcs.lms.handler.BoardDetailCommand;
@@ -37,6 +38,7 @@ public class App {
 
     BoardDao boarddao = new BoardDao();
     LessonDao lessondao = new LessonDao();
+    MemberDao memberdao = new MemberDao();
     HashMap<String, Command> commandMap = new HashMap<>();
 
     //명령어 추가될 때마다 if else 추가될 필요가 없음
@@ -46,11 +48,11 @@ public class App {
     commandMap.put("/lesson/update", new LessonUpdateCommand(keyboard,lessondao));
     commandMap.put("/lesson/delete", new LessonDeleteCommand(keyboard,lessondao));
 
-    commandMap.put("/member/add", new MemberAddCommand(keyboard));
-    commandMap.put("/member/list", new MemberListCommand(keyboard));
-    commandMap.put("/member/detail", new MemberDetailCommand(keyboard));
-    commandMap.put("/member/update", new MemberUpdateCommand(keyboard));
-    commandMap.put("/member/delete", new MemberDeleteCommand(keyboard));    
+    commandMap.put("/member/add", new MemberAddCommand(keyboard, memberdao));
+    commandMap.put("/member/list", new MemberListCommand(keyboard, memberdao));
+    commandMap.put("/member/detail", new MemberDetailCommand(keyboard, memberdao));
+    commandMap.put("/member/update", new MemberUpdateCommand(keyboard, memberdao));
+    commandMap.put("/member/delete", new MemberDeleteCommand(keyboard, memberdao));    
     
     commandMap.put("/board/list", new BoardListCommand(keyboard, boarddao));
     commandMap.put("/board/detail", new BoardDetailCommand(keyboard, boarddao));

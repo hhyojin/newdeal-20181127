@@ -9,12 +9,12 @@ public class Member implements Cloneable {
   private String photo;
   private String tel;
   private Date registeredDate;
-  
+
   @Override
   public Member clone() throws CloneNotSupportedException {
     return (Member) super.clone();
   }
-  
+
   public int getNo() {
     return no;
   }
@@ -57,6 +57,6 @@ public class Member implements Cloneable {
   public void setRegisteredDate(Date registeredDate) {
     this.registeredDate = registeredDate;
   }
-  
-  
+
+
 }

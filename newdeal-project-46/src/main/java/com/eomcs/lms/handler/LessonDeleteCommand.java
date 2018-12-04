@@ -13,15 +13,13 @@ public class LessonDeleteCommand implements Command {
   }
 
   public void execute() {
- 
-    int result = 0;  
-    
+
     try {
       
       System.out.print("수업번호? ");
       int no = Integer.parseInt(keyboard.nextLine());
       
-      result =lessonDao.delete(no);
+      int result =lessonDao.delete(no);
 
       if (result >0 ) {
         System.out.println("삭제했습니다.");

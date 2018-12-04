@@ -1,73 +1,56 @@
 package com.eomcs.lms.handler;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
+import java.sql.Date;
 import java.util.Scanner;
-import org.mariadb.jdbc.Driver;
+import com.eomcs.lms.dao.LessonDao;
+import com.eomcs.lms.domain.Lesson;
 
 public class LessonAddCommand implements Command {
 
   Scanner keyboard;
+  LessonDao lessonDao;
 
-  public LessonAddCommand(Scanner keyboard) {
+
+  public LessonAddCommand(Scanner keyboard, LessonDao lessonDao) {
     this.keyboard = keyboard;
+    this.lessonDao=lessonDao;
   }
-
 
   public void execute() {
 
-    Connection con = null;
-    Statement stmt = null;
-
-    try {
-      //어차피 sql문으로 만들 거니 걍 문자로 해서 보내
+    Lesson lesson = new Lesson();
     
-      DriverManager.registerDriver(new Driver()); 
-      con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/studydb", "study", "1111");
-      stmt = con.createStatement();
-
+    try {
       System.out.print("수업명? ");
-      String title = keyboard.nextLine();
+      lesson.setTitle(keyboard.nextLine());
 
       System.out.print("수업내용? ");
-      String contents = keyboard.nextLine();
+      lesson.setContents(keyboard.nextLine());
 
       System.out.print("시작일? ");
-      String startDate = keyboard.nextLine();
+      lesson.setStartDate(Date.valueOf(keyboard.nextLine()));
 
       System.out.print("종료일? ");
-      String endDate = keyboard.nextLine();
+      lesson.setEndDate(Date.valueOf(keyboard.nextLine()));
 
       System.out.print("총수업 시간? ");
-      String totalHours = keyboard.nextLine();
+      lesson.setTotalHours(Integer.parseInt(keyboard.nextLine()));
 
       System.out.print("일수업 시간? ");
-      String dayHours = keyboard.nextLine();
+      lesson.setDayHours(Integer.parseInt(keyboard.nextLine()));
 
       System.out.print("수강생 번호? ");
-      String mno = keyboard.nextLine();
+      lesson.setWriterNo(Integer.parseInt(keyboard.nextLine()));
       
-      //SQL을 서버에 전송. select를 제외하고는 모두 executeUpadte 사용.resultSet 노 쓸모
-      stmt.executeUpdate("insert into lesson (title, cont, sdt, edt, tot_hr, day_hr, mno)"
-                        + " values('" + title +"', '" + contents + "', '" 
-                        + startDate + "', '" + endDate + "', " + totalHours + ", " 
-                        + dayHours + ", " + mno +")");
-
-      //DBMS에서 한 개의 레코드를 가져올 필요 없음
-      System.out.println("입력했습니다.");
+      int result = lessonDao.insert(lesson);
+      
+      if (result > 0) {     
+        System.out.println("입력했습니다.");
+      } else System.out.println("입력 실패했습니다.");
      
     }catch (Exception e) {
       e.printStackTrace();
     }
 
-    finally {
-      //접속을 끊을 때는 접속과 반대로. 다만 각각의 단계에 모두 try catch 해줘야 함
-      try {stmt.close();} catch(Exception e) {}
-      try {con.close();} catch(Exception e) {}
-    }
-    
-    
-    
   }
   
 }

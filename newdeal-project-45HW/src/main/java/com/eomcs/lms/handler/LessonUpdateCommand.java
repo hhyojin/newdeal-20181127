@@ -1,13 +1,11 @@
 package com.eomcs.lms.handler;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import org.mariadb.jdbc.Driver;
-import com.eomcs.lms.domain.Lesson;
 
 public class LessonUpdateCommand implements Command {
 

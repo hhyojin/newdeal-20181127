@@ -12,7 +12,6 @@ import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
 
 public class MariaDBBoardDao implements BoardDao{
-
   public List<Board> findAll() throws Exception{ //ArrayList로 하면 안 됨. 유연성을 위해 인터페이스로 적어
 
     DriverManager.registerDriver(new Driver());
@@ -45,12 +44,12 @@ public class MariaDBBoardDao implements BoardDao{
 
     try(
         Connection con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/studydb", "study", "1111");
-        PreparedStatement pstmt = con.prepareStatement("select bno, cont, cdt, view, mno, lno"
-            + " from board where bno=?") )  {
-
-      pstmt.setInt(1, no);
-
-      try ( ResultSet rs = pstmt.executeQuery()){
+        PreparedStatement pstmt = con.prepareStatement("select bno, cont, cdt, view, mno, lno from board where bno=?");
+        )  {
+      
+        pstmt.setInt(1, no);
+      
+      try(ResultSet rs = pstmt.executeQuery()){
         if(rs.next()) {
           Board board = new Board();
           board.setNo(rs.getInt("bno"));
@@ -63,7 +62,7 @@ public class MariaDBBoardDao implements BoardDao{
         } else {
           return null;
         }
-      }    
+      }  
     }
   }
 
@@ -74,13 +73,15 @@ public class MariaDBBoardDao implements BoardDao{
     try (
         Connection con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/studydb", "study", "1111");
         PreparedStatement pstmt = con.prepareStatement("insert into board (cont, mno, lno)"
-            + " values(?, ?, ?)");){
-
-      pstmt.setString(1,  board.getContents());
+            + " values(?, ?, ?)");
+        ){
+      
+      pstmt.setString(1, board.getContents());
       pstmt.setInt(2, board.getWriterNo());
       pstmt.setInt(3, board.getLessonNo());
-
+      
       return pstmt.executeUpdate();
+
     }
   }
 
@@ -90,13 +91,11 @@ public class MariaDBBoardDao implements BoardDao{
     int result = 0;
 
     try (Connection con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/studydb", "study", "1111");
-        PreparedStatement pstmt = con.prepareStatement("update board set cont=? where bno=?")){
-
+        PreparedStatement pstmt = con.prepareStatement("update board set cont=? where bno=?")) {
+      
       pstmt.setString(1, board.getContents());
       pstmt.setInt(2, board.getNo());
-
       result = pstmt.executeUpdate();
-
     }catch (Exception e) {
       e.printStackTrace();
     } 
@@ -109,24 +108,20 @@ public class MariaDBBoardDao implements BoardDao{
     DriverManager.registerDriver(new Driver()); 
     Connection con = null;
     PreparedStatement pstmt = null;
-    int result = 0;
-    
+
     try {
 
       con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/studydb", "study", "1111");
       pstmt = con.prepareStatement("delete from board where bno=?");
-      pstmt.setInt(1, no);
-      
-      result = pstmt.executeUpdate();
 
-    }catch (Exception e) {
-      e.printStackTrace();
+      pstmt.setInt(1, no);
+      return pstmt.executeUpdate();
     }
     finally {
       //접속을 끊을 때는 접속과 반대로. 다만 각각의 단계에 모두 try catch 해줘야 함
       try {pstmt.close();} catch(Exception e) {}
       try {con.close();} catch(Exception e) {}
     }
-    return result;
+    
   }
 }

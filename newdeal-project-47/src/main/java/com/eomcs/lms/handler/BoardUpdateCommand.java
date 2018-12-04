@@ -35,7 +35,7 @@ public class BoardUpdateCommand implements Command{
       int result = boardDao.update(board);
 
       if(result >0) {System.out.println("변경했습니다.");
-      } System.out.println("변경에 실패했습니다.");
+      } else System.out.println("변경에 실패했습니다.");
       
       
 

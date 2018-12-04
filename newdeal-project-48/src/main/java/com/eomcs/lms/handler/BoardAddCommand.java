@@ -33,7 +33,7 @@ public class BoardAddCommand implements Command{
       
       if (result > 0) {
         System.out.println("입력했습니다.");
-      } System.out.println("입력에 실패했습니다.");
+      } else {System.out.println("입력에 실패했습니다.");}
       
       
      

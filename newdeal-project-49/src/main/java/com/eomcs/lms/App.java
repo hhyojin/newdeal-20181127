@@ -10,8 +10,10 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import com.eomcs.lms.dao.BoardDao;
+import com.eomcs.lms.dao.LessonDao;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.dao.impl.MariaDBBoardDao;
+import com.eomcs.lms.dao.impl.MariaDBLessonDao;
 import com.eomcs.lms.dao.impl.MariaDBMemberDao;
 import com.eomcs.lms.handler.BoardAddCommand;
 import com.eomcs.lms.handler.BoardDeleteCommand;
@@ -19,6 +21,11 @@ import com.eomcs.lms.handler.BoardDetailCommand;
 import com.eomcs.lms.handler.BoardListCommand;
 import com.eomcs.lms.handler.BoardUpdateCommand;
 import com.eomcs.lms.handler.Command;
+import com.eomcs.lms.handler.LessonAddCommand;
+import com.eomcs.lms.handler.LessonDeleteCommand;
+import com.eomcs.lms.handler.LessonDetailCommand;
+import com.eomcs.lms.handler.LessonListCommand;
+import com.eomcs.lms.handler.LessonUpdateCommand;
 import com.eomcs.lms.handler.LoginCommand;
 import com.eomcs.lms.handler.MemberAddCommand;
 import com.eomcs.lms.handler.MemberDeleteCommand;
@@ -33,7 +40,7 @@ public class App {
   static Queue<String> commandHistory2 = new LinkedList<>();
 
   public static void main(String[] args) throws Exception {
-        
+
     //LessonHandler lessonHandler = new LessonHandler(keyboard, new ArrayList<>());
     //MemberHandler memberHandler = new MemberHandler(keyboard, new LinkedList<>());
 
@@ -41,26 +48,26 @@ public class App {
     String resource = "com/eomcs/lms/conf/mybatis-config.xml";
     InputStream inputStream = Resources.getResourceAsStream(resource);
     SqlSessionFactory sqlSessionFactory =
-      new SqlSessionFactoryBuilder().build(inputStream);
-    
-    
+        new SqlSessionFactoryBuilder().build(inputStream);
+
     BoardDao boarddao = new MariaDBBoardDao(sqlSessionFactory);
     MemberDao memberdao = new MariaDBMemberDao(sqlSessionFactory);
+    LessonDao lessondao = new MariaDBLessonDao(sqlSessionFactory);
     HashMap<String, Command> commandMap = new HashMap<>();
 
     //명령어 추가될 때마다 if else 추가될 필요가 없음
-   /* commandMap.put("/lesson/add", new LessonAddCommand(keyboard));
-    commandMap.put("/lesson/list", new LessonListCommand(keyboard));
-    commandMap.put("/lesson/detail", new LessonDetailCommand(keyboard));
-    commandMap.put("/lesson/update", new LessonUpdateCommand(keyboard));
-    commandMap.put("/lesson/delete", new LessonDeleteCommand(keyboard));*/
+    commandMap.put("/lesson/add", new LessonAddCommand(keyboard, lessondao));
+    commandMap.put("/lesson/list", new LessonListCommand(keyboard, lessondao));
+    commandMap.put("/lesson/detail", new LessonDetailCommand(keyboard, lessondao));
+    commandMap.put("/lesson/update", new LessonUpdateCommand(keyboard, lessondao));
+    commandMap.put("/lesson/delete", new LessonDeleteCommand(keyboard, lessondao));
 
-    commandMap.put("/member/add", new MemberAddCommand(keyboard));
-    commandMap.put("/member/list", new MemberListCommand(keyboard));
-    commandMap.put("/member/detail", new MemberDetailCommand(keyboard));
-    commandMap.put("/member/update", new MemberUpdateCommand(keyboard));
-    commandMap.put("/member/delete", new MemberDeleteCommand(keyboard));    
-    
+    commandMap.put("/member/add", new MemberAddCommand(keyboard, memberdao));
+    commandMap.put("/member/list", new MemberListCommand(keyboard, memberdao));
+    commandMap.put("/member/detail", new MemberDetailCommand(keyboard, memberdao));
+    commandMap.put("/member/update", new MemberUpdateCommand(keyboard, memberdao));
+    commandMap.put("/member/delete", new MemberDeleteCommand(keyboard, memberdao));    
+
     commandMap.put("/board/list", new BoardListCommand(keyboard, boarddao));
     commandMap.put("/board/detail", new BoardDetailCommand(keyboard, boarddao));
     commandMap.put("/board/delete", new BoardDeleteCommand(keyboard, boarddao));
@@ -68,7 +75,7 @@ public class App {
     commandMap.put("/board/add", new BoardAddCommand(keyboard, boarddao));
 
     commandMap.put("/auth/login", new LoginCommand(keyboard, memberdao));
-    
+
     while (true) {
       String command = prompt();
 
@@ -83,9 +90,9 @@ public class App {
 
       if (commandHandler !=null ) {
         try {
-        commandHandler.execute();
+          commandHandler.execute();
         } catch (Exception e) {
-         System.out.println("명령어 처리 중 오류 발생!");
+          System.out.println("명령어 처리 중 오류 발생!");
         }
       } else if (command.equals("quit")) {
         System.out.println("안녕!");

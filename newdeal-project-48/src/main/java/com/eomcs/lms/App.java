@@ -6,8 +6,10 @@ import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 import com.eomcs.lms.dao.BoardDao;
+import com.eomcs.lms.dao.LessonDao;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.dao.impl.MariaDBBoardDao;
+import com.eomcs.lms.dao.impl.MariaDBLessonDao;
 import com.eomcs.lms.dao.impl.MariaDBMemberDao;
 import com.eomcs.lms.handler.BoardAddCommand;
 import com.eomcs.lms.handler.BoardDeleteCommand;
@@ -15,6 +17,11 @@ import com.eomcs.lms.handler.BoardDetailCommand;
 import com.eomcs.lms.handler.BoardListCommand;
 import com.eomcs.lms.handler.BoardUpdateCommand;
 import com.eomcs.lms.handler.Command;
+import com.eomcs.lms.handler.LessonAddCommand;
+import com.eomcs.lms.handler.LessonDeleteCommand;
+import com.eomcs.lms.handler.LessonDetailCommand;
+import com.eomcs.lms.handler.LessonListCommand;
+import com.eomcs.lms.handler.LessonUpdateCommand;
 import com.eomcs.lms.handler.LoginCommand;
 import com.eomcs.lms.handler.MemberAddCommand;
 import com.eomcs.lms.handler.MemberDeleteCommand;
@@ -35,20 +42,21 @@ public class App {
 
     BoardDao boarddao = new MariaDBBoardDao();
     MemberDao memberdao = new MariaDBMemberDao();
+    LessonDao lessondao = new MariaDBLessonDao();
     HashMap<String, Command> commandMap = new HashMap<>();
 
     //명령어 추가될 때마다 if else 추가될 필요가 없음
-   /* commandMap.put("/lesson/add", new LessonAddCommand(keyboard));
-    commandMap.put("/lesson/list", new LessonListCommand(keyboard));
-    commandMap.put("/lesson/detail", new LessonDetailCommand(keyboard));
-    commandMap.put("/lesson/update", new LessonUpdateCommand(keyboard));
-    commandMap.put("/lesson/delete", new LessonDeleteCommand(keyboard));*/
+    commandMap.put("/lesson/add", new LessonAddCommand(keyboard, lessondao));
+    commandMap.put("/lesson/list", new LessonListCommand(keyboard, lessondao));
+    commandMap.put("/lesson/detail", new LessonDetailCommand(keyboard, lessondao));
+    commandMap.put("/lesson/update", new LessonUpdateCommand(keyboard, lessondao));
+    commandMap.put("/lesson/delete", new LessonDeleteCommand(keyboard, lessondao));
 
-    commandMap.put("/member/add", new MemberAddCommand(keyboard));
-    commandMap.put("/member/list", new MemberListCommand(keyboard));
-    commandMap.put("/member/detail", new MemberDetailCommand(keyboard));
-    commandMap.put("/member/update", new MemberUpdateCommand(keyboard));
-    commandMap.put("/member/delete", new MemberDeleteCommand(keyboard));    
+    commandMap.put("/member/add", new MemberAddCommand(keyboard, memberdao));
+    commandMap.put("/member/list", new MemberListCommand(keyboard, memberdao));
+    commandMap.put("/member/detail", new MemberDetailCommand(keyboard, memberdao));
+    commandMap.put("/member/update", new MemberUpdateCommand(keyboard, memberdao));
+    commandMap.put("/member/delete", new MemberDeleteCommand(keyboard, memberdao));    
     
     commandMap.put("/board/list", new BoardListCommand(keyboard, boarddao));
     commandMap.put("/board/detail", new BoardDetailCommand(keyboard, boarddao));

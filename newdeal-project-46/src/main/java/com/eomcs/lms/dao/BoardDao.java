@@ -102,20 +102,14 @@ public class BoardDao {
     Statement stmt = null;
     
     try {
-      
       con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/studydb", "study", "1111");
       stmt = con.createStatement();
- 
-      stmt.executeUpdate("delete from board where bno=" +no);
-    
-    }catch (Exception e) {
-      e.printStackTrace();
+      return stmt.executeUpdate("delete from board where bno=" +no);
     }
     finally {
       //접속을 끊을 때는 접속과 반대로. 다만 각각의 단계에 모두 try catch 해줘야 함
       try {stmt.close();} catch(Exception e) {}
-      try {con.close();} catch(Exception e) {}
-    }
-    return stmt.executeUpdate("delete from board where bno=" +no);
+      try {con.close();} catch(Exception e) {}       
+    }  
   }
 }

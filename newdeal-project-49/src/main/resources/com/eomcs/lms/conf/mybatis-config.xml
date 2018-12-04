@@ -35,5 +35,6 @@
   <mappers>
     <mapper resource="com/eomcs/lms/mapper/BoardMapper.xml"/>
     <mapper resource="com/eomcs/lms/mapper/MemberMapper.xml"/>
+    <mapper resource="com/eomcs/lms/mapper/LessonMapper.xml"/>
   </mappers>
 </configuration>
