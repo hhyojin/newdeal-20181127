@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BoardDao">
+
+  <!-- 컬럼명과 프로퍼티명 일치시킴 -->
+  <!-- pk 컬럼은 result가 아니라 id라고 해줘야 함 -->
+  <resultMap type="board" id="boardMap">
+    <id column="bno" property="no" />  
+    <result column="cont" property="contents" />  
+    <result column="cdt" property="createdDate" />  
+    <result column="view" property="viewCount" />  
+    <result column="mno" property="writerNo" />  
+    <result column="lno" property="lessonNo" />  
+  </resultMap>
+
+
+
+	<!-- Board는 데이터 하나 담는 자료형. 내부적으로 리스트를 만들어 반환해줌 -->
+	<select id="findAll" resultMap="boardMap">
+		select 
+		  bno,
+		  cont,
+		  cdt,
+		  view
+		from board
+	</select>
+
+	<select id="findByNo" parameterType="int" resultMap="boardMap">
+		select 
+		  bno, 
+		  cont, 
+		  cdt, 
+		  view, 
+		  mno, 
+		  lno
+		from board where bno=#{value} 
+	</select>
+	<!-- as는 생략 가능 -->
+	<!-- 기본형 + String인 경우 parameter 이름은 맘대로 줘도 됨 
+	     이외에는 프로퍼티 네임-->
+
+
+  <!-- 리절트 타입은 무조건 int. 적지 마 -->
+  <insert id="insert" parameterType="board">
+    insert into board (cont, mno, lno) 
+      values(#{contents}, #{writerNo}, #{lessonNo})
+  </insert>
+  
+  <update id="update" parameterType="board">
+    update board set 
+      cont=#{contents} 
+    where bno=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from board where bno=#{no}
+  </delete>
+
+
+
+</mapper>
