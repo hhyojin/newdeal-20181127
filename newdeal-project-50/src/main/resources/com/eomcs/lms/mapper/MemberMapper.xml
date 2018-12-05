@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberDao">
+
+	<!-- 컬럼명과 프로퍼티명 일치시킴 -->
+	<!-- pk 컬럼은 result가 아니라 id라고 해줘야 함 -->
+	<resultMap type="member" id="MemberMap">
+		<id column="mno" property="no" />
+		<result column="name" property="name" />
+		<result column="email" property="email" />
+		<result column="pwd" property="password" />
+		<result column="photo" property="photo" />
+		<result column="tel" property="tel" />
+		<result column="cdt" property="registeredDate" />
+	</resultMap>
+
+	<!-- Board는 데이터 하나 담는 자료형. 내부적으로 리스트를 만들어 반환해줌 -->
+	<select id="findByEmailPassword" resultMap="MemberMap"
+		parameterType="map">
+		select
+		  mno,
+		  name,
+		  email,
+		  photo
+		from member
+		where email=#{email} and pwd=#{password}
+	</select>
+	
+	<select id="findAll" resultMap="MemberMap">
+	 select mno, name, email, pwd, photo, tel, cdt from member
+	</select>
+	
+	<select id="findByNo" parameterType="int" resultMap="MemberMap">
+   select mno, name, email, pwd, photo, tel, cdt
+   from member where mno=#{no}
+  </select>
+  
+  <insert id="insert" parameterType="Member">
+   insert into member (name, email, pwd, photo, tel)
+   values(#{name}, #{email}, #{password}, #{photo}, #{tel})
+  </insert>
+  
+  <update id="update" parameterType="Member">
+   update member set 
+     name=#{name}, 
+     email=#{email}, 
+     pwd=#{password},
+     photo=#{photo},
+     tel=#{tel}
+   where mno=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+   delete from member where mno=#{no}
+  </delete>
+
+</mapper>

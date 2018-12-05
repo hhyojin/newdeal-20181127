@@ -1,12 +1,12 @@
 package com.eomcs.lms.handler;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
+import org.springframework.stereotype.Component;
 import com.eomcs.lms.dao.LessonDao;
 import com.eomcs.lms.domain.Lesson;
 
+@Component("/lesson/update")
 public class LessonUpdateCommand implements Command {
 
   Scanner keyboard;
@@ -21,7 +21,7 @@ public class LessonUpdateCommand implements Command {
   public void execute() {
     
     try {
-    
+      
       System.out.print("수업 번호");
       int no = Integer.parseInt(keyboard.nextLine());
       
@@ -78,8 +78,43 @@ public class LessonUpdateCommand implements Command {
         System.out.print("회원번호? ");
         String mno = keyboard.nextLine();
         if (mno.equals("")) {lesson.setWriterNo(Integer.parseInt(oldMno)); }
-        else lesson.setWriterNo(Integer.parseInt(mno));   
+        else lesson.setWriterNo(Integer.parseInt(mno));
+   
+        /*System.out.printf("제목(%s)? \n", oldTitle);
+        System.out.print("수업제목? "); 
+        if (keyboard.nextLine().equals("")) {lesson.setTitle(oldTitle); }
+        else lesson.setTitle(keyboard.nextLine());
         
+        System.out.printf("내용(%s)? \n", oldContent);
+        System.out.print("수업내용? ");
+        if (keyboard.nextLine().equals("")) {lesson.setContents(oldContent); }
+        else lesson.setContents(keyboard.nextLine());
+        
+        System.out.printf("시작일(%s)? \n", oldStardDate);
+        System.out.print("시작일? ");
+        if (keyboard.nextLine().equals("")) {lesson.setStartDate(Date.valueOf(oldStardDate)); }
+        else lesson.setStartDate(Date.valueOf(keyboard.nextLine()));
+        
+        System.out.printf("종료일(%s)? \n", oldEndDate);
+        System.out.print("종료일? ");
+        if (keyboard.nextLine().equals("")) {lesson.setEndDate(Date.valueOf(oldEndDate)); }
+        else lesson.setEndDate(Date.valueOf(keyboard.nextLine()));
+        
+        System.out.printf("총수업시간(%s)? \n", oldTotalHours);
+        System.out.print("총수업시간? ");
+        if (keyboard.nextLine().equals("")) {lesson.setTotalHours(Integer.parseInt(oldTotalHours)); }
+        else lesson.setTotalHours(Integer.parseInt(keyboard.nextLine()));
+        
+        System.out.printf("일수업시간(%s)? \n", oldDayHours);
+        System.out.print("일수업시간? ");
+        if (keyboard.nextLine().equals("")) {lesson.setDayHours(Integer.parseInt(oldDayHours)); }
+        else lesson.setDayHours(Integer.parseInt(keyboard.nextLine()));
+        
+        System.out.printf("회원번호(%s)? \n", oldMno);
+        System.out.print("회원번호? ");
+        if (keyboard.nextLine().equals("")) {lesson.setWriterNo(Integer.parseInt(oldMno)); }
+        else lesson.setWriterNo(Integer.parseInt(keyboard.nextLine()));
+        */
       } else System.out.println("해당 번호의 수업이 없습니다.");
       
       int result = lessonDao.update(lesson);
