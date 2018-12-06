@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset='UTF-8'>
-<title>게시물</title>
+<title>수업</title>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -14,63 +14,50 @@
 
 	<jsp:include page="/header.jsp"></jsp:include>
 
-	<h1>게시물 상세정보</h1>
+	<h1>수업 등록</h1>
 
-	<form action="update" method="post">
+	<form action="add" method="post">
 		<table border='1'>
 			<tr>
-				<th>번호</th>
-				<td><input type="text" name="no" value="${lesson.no}" readonly></td>
-			</tr>
-			<tr>
 				<th>수업명</th>
-				<td><input type="text" name="title" value="${lesson.title}"></td>
+				<td><input type="text" name="title"></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea name="contents" rows="5" cols="50">${lesson.contents}
-      </textarea></td>
+				<td><textarea name="contents" rows="5" cols="50"></textarea></td>
 			</tr>
 			<tr>
-				<th>시작일</th>
-				<td><input type="text" name="startDate" value="${lesson.startDate}" id="startDate"></td>
-			</tr>
-			<tr>
-				<th>종료일</th>
-				<td><input type="text" name="endDate" value="${lesson.endDate}" id="endDate"></td>
-			</tr>
-			<tr>
-				<th>총 수업시간</th>
-				<td><input type="text" name="totalHours" value="${lesson.totalHours}"></td>
-			</tr>
-			<tr>
-				<th>일 수업시간</th>
-				<td><input type="text" name="dayHours" value="${lesson.dayHours}"></td>
-			</tr>
-			<tr>
-				<th>강사</th>
-				<td><input type="text" value="${lesson.writerNo}" readonly></td>
-			</tr>
+        <th>시작일</th>
+        <td><input type="text" name="startDate" id="startDate"></td>
+      </tr>
+      <tr>
+        <th>종료일</th>
+        <td><input type="text" name="endDate" id="endDate"></td>
+      </tr>
+      <tr>
+        <th>총 수업시간</th>
+        <td><input type="text" name="totalHours"></td>
+      </tr>
+      <tr>
+        <th>일 수업시간</th>
+        <td><input type="text" name="dayHours"></td>
+      </tr>
 			<tr>
 				<th></th>
-				<td><button>변경</button>
-					<button type="button" onclick="remove();">삭제</button></td>
+				<td>
+					<button>등록</button>
+					<button type="button" onclick="location.href='list'">취소</button>
+				</td>
 			</tr>
 		</table>
 	</form>
-
-	<script>
-function remove(){
-	location.href="delete?no=${lesson.no}"
-}
-</script>
 
 </body>
 </html>
 <script>
 $.datepicker.setDefaults({
-	     dateFormat: 'yy-mm-dd'
-	    	,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
+       dateFormat: 'yy-mm-dd'
+        ,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
         ,changeYear: true
         ,changeMonth: true
         ,yearSuffix: "년" //달력의 년도 부분 뒤에 붙는 텍스트

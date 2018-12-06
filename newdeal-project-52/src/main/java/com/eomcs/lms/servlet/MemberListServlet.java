@@ -1,5 +1,4 @@
 package com.eomcs.lms.servlet;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
@@ -12,17 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
-import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.dao.LessonDao;
-import com.eomcs.lms.domain.Lesson;
+import com.eomcs.lms.dao.MemberDao;
+import com.eomcs.lms.domain.Member;
 import com.eomcs.lms.handler.Command;
 
-@WebServlet("/lesson/list")
-public class LessonListSevlet extends HttpServlet {
+@WebServlet("/member/list")
+public class MemberListServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
   
-  LessonDao lessonDao;
-
+  MemberDao memberdao;
+  
   @Override
   public void init() throws ServletException{
     
@@ -30,7 +29,7 @@ public class LessonListSevlet extends HttpServlet {
     ApplicationContext iocContainer = (ApplicationContext) sc.getAttribute("iocContainer"); 
 
     try {
-      lessonDao = iocContainer.getBean(LessonDao.class);    
+      memberdao = iocContainer.getBean(MemberDao.class);    
     }catch (Exception e) {
       e.printStackTrace();
     }
@@ -41,18 +40,17 @@ public class LessonListSevlet extends HttpServlet {
       throws ServletException, IOException { 
    
     try {
-      List<Lesson> list = lessonDao.findAll();
-     
+      List<Member> list = memberdao.findAll();
+      
       response.setContentType("text/HTML;charset=utf-8");
       request.setAttribute("list", list);
-      
-      RequestDispatcher rd = request.getRequestDispatcher("/lesson/list.jsp");
+
+      RequestDispatcher rd = request.getRequestDispatcher("/member/list.jsp");
       rd.include(request, response);
-      
       
     }catch (Exception e) {
       e.printStackTrace();
-      throw new ServletException(e);
     }
-}
+    
+  }
 }

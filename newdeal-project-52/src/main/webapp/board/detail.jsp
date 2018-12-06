@@ -52,6 +52,7 @@
 function remove(){
 	location.href="delete?no=${board.no}"
 }
+
 </script>
 
 </body>

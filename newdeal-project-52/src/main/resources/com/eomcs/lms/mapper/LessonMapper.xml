@@ -9,7 +9,7 @@
 	<!-- pk 컬럼은 result가 아니라 id라고 해줘야 함 -->
 	<resultMap type="lesson" id="LessonMap">
 		<id column="lno" property="no" />
-		<!-- <result column="title" property="title" /> -->
+		<result column="title" property="title" />
 		<result column="cont" property="contents" />
 		<result column="sdt" property="startDate" />
 		<result column="edt" property="endDate" />
@@ -55,8 +55,7 @@
 		sdt=#{startDate},
 		edt=#{endDate},
 		tot_hr=#{totalHours},
-		day_hr=#{dayHours},
-		mno=#{writerNo}
+		day_hr=#{dayHours}
 		where lno=#{no}
 	</update>
 
