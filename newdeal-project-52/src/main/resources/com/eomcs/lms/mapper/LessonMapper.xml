@@ -29,6 +29,17 @@
 		from lesson where lno=#{no}
 	</select>
 
+	<select id="findByParticipantNo" parameterType="int" resultType="hashmap">
+		select 
+		 lm.mno memberNo, 
+	 	 l.lno lessonNo, 
+		 l.title
+		from les_memb lm
+		  join lesson l on lm.lno=l.lno
+		where lm.mno=#{value}
+	</select>
+
+
 	<insert id="insert" parameterType="lesson">
 		insert into lesson (title,
 		cont, sdt, edt, tot_hr, day_hr, mno)
@@ -50,7 +61,8 @@
 	</update>
 
 	<delete id="delete" parameterType="int">
-		delete from lesson where lno=#{no}
+		delete from lesson where
+		lno=#{no}
 	</delete>
 
 </mapper>

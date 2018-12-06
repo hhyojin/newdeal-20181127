@@ -19,7 +19,7 @@
 
 	<!-- Board는 데이터 하나 담는 자료형. 내부적으로 리스트를 만들어 반환해줌 -->
 	<select id="findByEmailPassword" resultMap="MemberMap"
-		parameterType="map">
+		parameterType="hashmap">
 		select
 		  mno,
 		  name,

@@ -1,6 +1,7 @@
 package com.eomcs.lms.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Component;
@@ -49,6 +50,14 @@ public class MariaDBLessonDao implements LessonDao {
       int count = sqlSession.delete("LessonDao.delete", no);
       sqlSession.commit();
       return count;
+    }
+  }
+  
+  public List<Map<String, Object>> findByParticipantNo(int memberNo) 
+      throws Exception{
+    
+      try(SqlSession sqlSession = sqlSessionFactory.openSession()) {
+        return sqlSession.selectList("LessonDao.findByParticipantNo", memberNo);
     }
   }
 }

@@ -3,6 +3,7 @@ package com.eomcs.lms.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,28 +45,27 @@ public class BoardListServlet extends HttpServlet {
 
   //클라이언트 요청이 올 때마다 호출
   @Override
-  public void doGet(HttpServletRequest req, HttpServletResponse res)
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException { 
-
-    res.setContentType("text/plain;charset=UTF-8");
-    PrintWriter out = res.getWriter();
-    out.println("게시물 목록");
 
     try {
       List<Board> list = boardDao.findAll();
 
-      for (Board board : list) {
-        out.printf("%3d, %-20s, %s, %d\n", 
-            board.getNo(), 
-            board.getContents(), 
-            board.getCreatedDate(), 
-            board.getViewCount());
-      }
+      //출력 컨텐트의 타입을 include하는 쪽에서 지정해야 한다.
+      response.setContentType("text/HTML;charset=utf-8");
+      
+      //jsp가 게시물 목록을 사용할 수 있도록 보관소에 저장
+      request.setAttribute("list", list);
+     
+      //jsp로 실행을 위임한다
+      RequestDispatcher rd = request.getRequestDispatcher("/board/list.jsp");
+      rd.include(request, response); //include는 다시 돌아옴 forward는 안 돌아옴
+      //include의 경우는 include하는 쪽에서 contentType 설정해 줘야 함
+      
     } catch (Exception e) {
       e.printStackTrace();
+      throw new ServletException(e);
     }
 
   }
-
-
 }

@@ -1,6 +1,7 @@
 package com.eomcs.lms.dao;
 
 import java.util.List;
+import java.util.Map;
 import com.eomcs.lms.domain.Lesson;
 
 public interface LessonDao {
@@ -14,4 +15,6 @@ public interface LessonDao {
   int update(Lesson lesson) throws Exception;
 
   int delete(int no) throws Exception;
+  
+  List<Map<String, Object>> findByParticipantNo(int no) throws Exception;
 }
