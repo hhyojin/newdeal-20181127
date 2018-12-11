@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+	   function sum(a , b ,callback){
+           var result = a + b;
+           callback();
+           console.log("callback");
+           return result;
+       }        
+       var r = sum(1,2,function(){
+           alert('a+b를 더했습니다');
+       });    
+       console.log(r);
+	</script>
+</head>
+<body>
+
+</body>
+</html>
