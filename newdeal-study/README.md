@@ -24,9 +24,9 @@
 
 ### 181212 
 1. 배열 내의 최대값과 최솟값 구하기
-  * s1.java  -> 3항 연산자 이용  
+  * s1.java  -> 3항 연산자 이용
 2. 제어문
-  * s2.java  
+  * s2.java
 3. Point, Shape 클래스를 이용해 Triagle 클래스 구현
   * Shape, Point, Triangle.java  -> 연관과 상속
 4. 클래스 다이어그램 보고 구현하기
