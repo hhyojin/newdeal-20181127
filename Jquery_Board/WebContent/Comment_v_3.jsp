@@ -17,6 +17,28 @@
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			
+			//데이터 출력
+			function PrintData(data){
+				$('#container').find("table tr").not(":first").remove();
+				
+				$.each(data, function(){
+					//console.log(this);
+					$('#container').find("table tr:last").after(
+						"<tr>"
+						+ " <td>" + this.seq + "</td>"
+						+ " <td>" + this.comment + "</td>"
+						+ " <td><button seq='" + this.seq +"'>삭제</button></td>"
+						+ "</tr>"
+					);
+				});
+				$('#comment').val();
+				
+			}
+			
+			
+			
+			//데이터 추가
 			$('#addBtn').on("click",function(){
 				if($.trim($('#comment').val()) == "")
 				{
@@ -24,82 +46,49 @@
 					$('#comment').focus();
 					return false;
 				}
-				
-				//1. 조합문자열
-				//bbs.jsp?name=kglim&age=10
-				var data = "bbsSeq=<%=bbsSeq%>";
-				data += "&comment=" + $.trim($('#comment').val());
-				//bbsSeq=1&comment=안녕하세요
-				
-				//2. javaScript 객체형태로
-				//{bbSeq : 1 , comment:'안녕하세요'}
 				var data2 = {
 						      bbsSeq  : "<%= bbsSeq %>" ,
 						      comment : $.trim($('#comment').val())  
 						
 				            };
-				//url  : 요청할 주소(insertboard.do , insert.action , insert.jsp)
-				//type : 전송방식(GET ,POST)
-				//data : 서버로 전송할 데이터 (조합 문자열 또는 javaScript 객체 형태)
-				//dataType : 서버로 부터 받을 TYPE(XML , HTML , JSON , SCRIPT, TEXT)
-				//timeout : 요청의 시간의 제한
-				//async : 비동기 , 동기 (default : true > 비동기)
-				//beforeSend : 요청이 전송되기전에 앞서 호출될 수 있는 함수 구현
-				//success : 응답 성공시 호출될 함수 (데이터 받아서 처리) > $.each(data,function(){}) ....
-				//error : 응답 에러시 호출된 함수
-				//complete : seccess , error 처리가 끝난수 마지막에 호출되는 함수
 				$.ajax(
 						{
-							url : "CommentAdd_v_1.jsp",  //페이지 주소 수정 _1
-							dataType : "JSON",           //dataType 수정_2
+							url : "CommentAdd_v_1.jsp",  
+							dataType : "JSON",           
 							async : true ,
 							type : "POST",
 							data : data2 ,
 							success : function(data)
 							{
-							    //위 에서 만약 success : function() { this.seq ....  }	
-								//selector 를 사용하여 연습하기
-								$('#container').find("table tr").not(":first").remove();
-								
-								$.each(data, function(){
-									//console.log(this);
-									$('#container').find("table tr:last").after(
-										"<tr>"
-										+ " <td>" + this.seq + "</td>"
-										+ " <td>" + this.comment + "</td>"
-										+ " <td><button seq='" + this.seq +"'>삭제</button></td>"
-										+ "</tr>"
-									);
-								});
-								$('#comment').val();
-								/*  
-									$.each(data,function(index,entry){
-									  $('#tbllist').append(
-										"<tr><td>" + entry.seq + "</td><td>" + entry.comment+ "</td></tr>"
-									  );
-									  
-								    });
-								*/
+								PrintData(data);		
 							}
 						}	
 				      );
 
 			});
 			
-			//삭제 처리하기 (삭제 버튼 클릭시)
+			//데이터 삭제
 			$('#container').on("click","button",function(){
-				//alert("클릭");
 				var data = {
 					      bbsSeq  : "<%= bbsSeq %>" ,
-					      seq : $(this).attr("seq")    //delete * from board where id=?
-					
-			            };
-				//$.getJSON().. 사용하여 삭제 처리를 하세요 
-				//$.getJSON('CommentDel.jsp',data)
-				//각자 코드 구현
-        $(this).parent().parent().remove();
-				$.getJSON('CommentDel.jsp',data);
-			});	
+					      seq : $(this).attr("seq")     
+				            };
+	
+				$.getJSON('CommentDel.jsp',data)
+				 .done(function(data){
+					 
+					 PrintData(data);
+					 
+				 }) //ajax > success
+				 .fail(function(){console.log('delete fail');}) 
+				 .always(function(){console.log('delete always');})
+				 ;
+			});
+			
+			
+			
+			
+			
 		});
 	
 	</script>

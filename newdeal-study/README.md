@@ -23,14 +23,11 @@
 * Zcar.java -> Zcar2.java 
 
 ### 181212 
-3항 연산자
-* s1.java
+배열 내의 최대값과 최솟값 구하기
+  * s1.java  -> 3항 연산자 이용
 제어문
-* s2.java
-연관과 상속 - 삼각형 그리기
-* Shape, Point, Triangle.java
-++++ 메모리 구조도 | ㄹㄹㄹㄹㄹ ++++
-
-
-연관과 상속 - 은행
-* Transaction, Account, Bank.java
+  * s2.java  
+Point, Shape 클래스를 이용해 Triagle 클래스 구현
+  * Shape, Point, Triangle.java  -> 연관과 상속
+클래스 다이어그램 보고 구현하기
+  * Transaction, Account, Bank.java -> 복합연관

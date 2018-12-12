@@ -17,7 +17,7 @@ public class BoardDAO {
 	}
 	static{
 		for(int k = 0 ; k < 5; k++){
-			boardList.add(new BoardVO(k,k+" 번쨰 제목",k+" 번째 내용","2014-11-12",k));
+			boardList.add(new BoardVO(k,k+" 번쨰 제목",k+" 번째 내용","2018-11-12",k));
 		}
 	}
 	

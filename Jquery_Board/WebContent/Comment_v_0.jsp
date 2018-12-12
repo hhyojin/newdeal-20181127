@@ -38,6 +38,7 @@
 				//timeout : 요청의 시간의 제한
 				//async : 비동기 , 동기 (default : true > 비동기)
 				//beforeSend : 요청이 전송되기전에 앞서 호출될 수 있는 함수 구현
+				               //보통 요청 시 로딩 중의 빙글빙글 도는 동그라미
 				//success : 응답 성공시 호출될 함수 (데이터 받아서 처리) > $.each(data,function(){}) ....
 				//error : 응답 에러시 호출된 함수
 				//complete : seccess , error 처리가 끝난수 마지막에 호출되는 함수

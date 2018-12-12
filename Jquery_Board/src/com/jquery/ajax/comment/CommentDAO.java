@@ -25,7 +25,6 @@ public class CommentDAO {
   	public List<CommentVO> getCommentList(int bbsSeq){ //select ....
   		return commentlist;
   	}
-	
   	
   	public void addComment(String comment){ // insert  글내용 
   		int size = commentlist.size();
