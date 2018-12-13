@@ -31,3 +31,15 @@
   * Shape, Point, Triangle.java  -> 연관과 상속
 4. 클래스 다이어그램 보고 구현하기
   * Transaction, Account, Bank.java -> 복합연관
+
+### 181213  
+1. Buyer 클래스 구현
+구매행위 (잔액금액 - 제품의 가격 , 포인트 갱신)
+구매자는 매장이 있는 모든 제품을 구매할 수 있다
+  buyer.buyer(kttv);
+  buyer.buyer(audio);
+  buyer.buyer(notebook);
+  * product/Product, KtTv, Audio, NoteBook 클래스 기본적으로 주어짐 -> 다형성
+2. 1에 추가로 cart, summary 함수 구현
+3. 싱글톤 구현
+  * product/Singletone, program
