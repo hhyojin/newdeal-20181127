@@ -3,3 +3,5 @@
 2. 버블 
 ### q181212
 1. 0~99 사이의 난수 맞추기
+### 124 나라
+1. https://programmers.co.kr/learn/courses/30/lessons/12899]
