@@ -1,4 +1,4 @@
-### lotto : 181210 로또 프로그램
+﻿### lotto : 181210 로또 프로그램
 1. 1~45까지의 난수를 발생시켜 6개의 배열에 담으세요
 2. 배열에 담긴 6개의 배열값은 중복 불가
 3. 배열에 있는 6개의 값을 낮은 순으로 정렬
@@ -61,3 +61,6 @@ Stack 만들어~
 3. Generic Stack 확인 문제
 2를 Generic으로 변환~
   * MyStackGeneric.java, GenericStack.java
+
+### s181217   
+1. Collection과 IO
