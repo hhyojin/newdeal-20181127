@@ -1,0 +1,26 @@
+select a.*
+from (
+        select RANK() OVER(ORDER BY seq DESC ) rank,
+                seq, name, id, email, subject, content, hit, bcode,
+                case when trunc(logtime, 'dd')=trunc(sysdate, 'dd')
+                       then to_char(logtime, 'hh24:mi:ss')
+                       else to_char(logtime, 'yy.mm.dd')
+               end as logtime
+        from board
+        where bcode=?
+     ) a
+where a.rank > ? and a.rank <= ?
+
+
+sql.append("select a.* \n");
+sql.append("from ( \n");
+sql.append("        select RANK() OVER(ORDER BY seq DESC ) rank, \n");
+sql.append("                seq, name, id, email, subject, content, hit, bcode, \n");
+sql.append("                case when trunc(logtime, 'dd')=trunc(sysdate, 'dd') \n");
+sql.append("                       then to_char(logtime, 'hh24:mi:ss') \n");
+sql.append("                       else to_char(logtime, 'yy.mm.dd') \n");
+sql.append("               end as logtime \n");
+sql.append("        from board \n");
+sql.append("        where bcode=? \n");
+sql.append("     ) a \n");
+sql.append("where a.rank > ? and a.rank <= ? \n");

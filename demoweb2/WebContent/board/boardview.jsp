@@ -76,6 +76,23 @@ if (request.getParameter("pageno") != null) {
                   }
                 });
       }) 
+      
+      //왜~ 안 되~는~지~~~~~~
+      /* $(".deleteComment").click(function(){
+    	  alert($(this).text());
+    	  var commentNo = $(this).parent().siblings('.commentNo').text();
+          $.ajax({
+              url : "boardCommentDelete.jsp",  
+              dataType : "JSON",           
+              async : true,
+              type : "POST",
+              data : {commentNo:commentNo},
+              success : function(data)
+              {  
+                commentList(boardNo);
+              }
+            });
+      }) */
   
   })
   
@@ -103,7 +120,6 @@ if (request.getParameter("pageno") != null) {
      
      //댓글 삭제
    function deleteComment(thisBtn){
-    	 /* var commentNo = $(this).parent().siblings(".commentNo").val(); */
     	 var commentNo = $(thisBtn).parent().siblings('.commentNo').text();
          $.ajax({
              url : "boardCommentDelete.jsp",  
@@ -116,7 +132,7 @@ if (request.getParameter("pageno") != null) {
                commentList(boardNo);
              }
            });
-  }
+  } 
 
 
   
@@ -137,6 +153,7 @@ if (request.getParameter("pageno") != null) {
             				  + "<td>" + this.regDate2 + "</td>"
             				  + "<td><button type='button' onclick='updateComment(this)'>수정</button></td>"
             				  + "<td><button type='button' onclick='deleteComment(this)'>삭제</button></td></tr>"
+            				  /* + "<td><button type='button' class='deleteComment'>삭제</button></td></tr>" */
             		); 
             	})
                

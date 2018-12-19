@@ -7,3 +7,10 @@
 1. 124 나라 https://programmers.co.kr/learn/courses/30/lessons/12899]
 ### q181214
 1. 아나그램
+### q181217
+1. PerfactNumber: 자연수 n까지의 완전수 구하기
+2. Stairs: 가위바위보로 계단 오르기 게임
+### q181218
+1. 문자열 압축 - 해야 함
+### q181219
+1. 단어공부

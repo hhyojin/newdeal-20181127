@@ -1,0 +1,55 @@
+tomcat 5.0 이하
+
+<Resource name="jdbc/bbs" auth="Container" type="javax.sql.DataSource"/> 
+   <ResourceParams name="jdbc/bbs">
+	  <parameter>
+	    <name>factory</name>
+	    <value>org.apache.commons.dbcp.BasicDataSourceFactory</value>
+	  </parameter>
+	  <parameter>
+	    <name>driverClassName</name>
+	    <value>oracle.jdbc.driver.OracleDriver</value>
+	 </parameter>
+	 <parameter>
+	    <name>url</name>
+	    <value>jdbc:oracle:thin:@211.183.3.49:1521:java2</value>
+	 </parameter>
+	 <parameter>
+	    <name>username</name>
+	    <value>javajsp</value>
+	 </parameter>
+	 <parameter>
+	    <name>password</name>
+	    <value>javajsp</value>
+	 </parameter>
+	 <parameter>
+	    <name>maxActive</name>
+	    <value>20</value>
+	 </parameter>
+	 <parameter>
+	    <name>maxIdle</name>
+	    <value>10</value>
+	 </parameter>
+	 <parameter>
+	    <name>maxWait</name>
+	    <value>-1</value>
+	 </parameter>
+</ResourceParams>
+
+
+
+
+
+
+tomcat 5.5 이상
+
+<Resource name="jdbc/bbs" auth="Container"
+      type="javax.sql.DataSource"
+      factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"
+      driverClassName="oracle.jdbc.driver.OracleDriver"
+      url="jdbc:oracle:thin:@211.183.3.49:1521:java2" username="javajsp"
+      password="javajsp" maxActive="20" maxIdle="10" maxWait="-1"
+      removeAbandoned="true" removeAbandonedTimeout="60"
+      logAbandoned="true" />
+    </Context>  
+
