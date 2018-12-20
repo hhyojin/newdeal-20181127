@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+  <configuration>
+  
+  <typeAliases>
+  	<typeAlias alias="boardListDto" type="com.bit.board.admin.model.BoardListDto" />
+  	<typeAlias alias="boardTypeDto" type="com.bit.board.admin.model.BoardTypeDto" />
+  	<typeAlias alias="categoryDto" type="com.bit.board.admin.model.CategoryDto" />
+  	<typeAlias alias="albumDto" type="com.bit.board.model.AlbumDto" />
+  	<typeAlias alias="bbsDto" type="com.bit.board.model.BbsDto" />
+  	<typeAlias alias="boardDto" type="com.bit.board.model.BoardDto" />
+  	<typeAlias alias="reboardDto" type="com.bit.board.model.ReboardDto" />
+  	<typeAlias alias="memoDto" type="com.bit.board.model.MemoDto" />
+  </typeAliases>
+  
+  
+  </configuration>

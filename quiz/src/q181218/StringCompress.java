@@ -8,7 +8,7 @@ public class StringCompress {
     String result="";
 
     for(int i =0; i<charArr.length;i++) {
-      
+      charArr[i]
     }
   }
 }

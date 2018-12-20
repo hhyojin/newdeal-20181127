@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.bit.board.admin.dao.BoardAdminDao">
+  	<select id="getBoardMenu" resultType="boardListDto">
+	select bl.bcode, bl.bname, bl.btype, bl.ccode, c.cname,
+	decode(bl.btype,
+			5, 'reboard',
+			6, 'album',
+			7, 'bbs',
+			'board') control
+	from board_list bl join category c on bl.ccode=c.ccode
+	order by bl.ccode, bl.bcode
+  	</select>
+  </mapper>
