@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.bit.board.dao.ReboardDao">
+	<insert id="writeArticle" parameterType="reboardDto">
+		insert all
+			into board (seq, name, id, email, subject, content, hit, logtime, bcode)
+			values (#{seq}, #{name}, #{id}, #{email}, #{subject}, #{content}, 0, sysdate, #{bcode})
+			into reboard (rseq, seq, ref, lev, step, pseq, reply)
+			values (reboard_rseq.nextval, #{seq}, #{ref}, 0, 0, 0, 0)
+		select * from dual
+	</insert>
+	
+	<select id="viewArticle" parameterType="int" resultType="reboardDto">
+		select b.seq, b.name, b.id, b.email, b.subject, b.content, b.hit, b.bcode, b.logtime, r.rseq, r.ref, r.lev, r.step, r.pseq, r.reply
+		from board b, reboard r
+		where b.seq=r.seq and b.seq=#{seq}
+	</select>
+	
+	<select id="listArticle" parameterType="Map" resultType="reboardDto">
+	select b.*
+	from
+	(select rownum as rnum, a.*
+	from 
+	(select b.seq, b.name, b.id, b.email, b.subject, b.content, b.hit, b.bcode, 
+			decode(to_char(b.logtime, 'YY-mm-dd'), to_char(sysdate, 'YY-mm-dd'), to_char(b.logtime, 'hh24:mi:ss'), to_char(b.logtime, 'YY-mm-dd')) as logtime, 
+			r.rseq, r.ref, r.lev, r.step, r.pseq, r.reply
+			from board b, reboard r
+			where b.seq=r.seq and b.bcode=#{bcode}
+			order by b.seq desc
+		) a
+	where rownum &lt;= #{end}
+	) b
+	where b.rnum > #{start}
+	</select>
+
+</mapper>

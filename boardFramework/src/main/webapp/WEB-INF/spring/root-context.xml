@@ -24,7 +24,13 @@
 		<property name="configLocation" value="classpath:com/bit/config/mybatis/configuration.xml" />
 		<property name="mapperLocations">
 			<list>
+				<value>classpath:com/bit/config/mybatis/album.xml</value>
+				<value>classpath:com/bit/config/mybatis/bbs.xml</value>
 				<value>classpath:com/bit/config/mybatis/board_admin.xml</value>
+				<value>classpath:com/bit/config/mybatis/board.xml</value>
+				<value>classpath:com/bit/config/mybatis/common.xml</value>
+				<value>classpath:com/bit/config/mybatis/memo.xml</value>
+				<value>classpath:com/bit/config/mybatis/reboard.xml</value>
 			</list>
 		</property>
 	</bean>
