@@ -44,8 +44,8 @@ public class ReboardServiceImpl implements ReboardService{
 		ReboardDto reboardDto = sqlsession.getMapper(ReboardDao.class).viewArticle(seq);
 		if(reboardDto !=null) {
 			reboardDto.setContent(reboardDto.getContent().replace("\n", "<br>"));
-			/*//view 화면에서 내 조회수는 반영 안 됨.
-			sqlsession.getMapper(CommonDao.class).updateHit(seq); */
+			//view 화면에서 내 조회수는 반영 안 됨.
+			//sqlsession.getMapper(CommonDao.class).updateHit(seq);
 		}
 		return reboardDto;
 	}

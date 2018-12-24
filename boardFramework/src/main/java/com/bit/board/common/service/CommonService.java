@@ -1,5 +1,12 @@
 package com.bit.board.common.service;
 
-public interface CommonService {
+import java.util.Map;
 
+import com.bit.util.PageNavigation;
+
+public interface CommonService {
+	
+	PageNavigation makePageNavigation(Map<String, String> param);
+	
+	
 }

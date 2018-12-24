@@ -13,5 +13,25 @@
 		set hit = hit+1
 		where seq = #{seq}
 	</select>
+	
+	<select id="getNewArticleCount" parameterType="int" resultType="int">
+	select count(seq) from board where bcode=#{bcode}
+	and to_char(logtime, 'yymmdd') = to_char(sysdate, 'yymmdd')
+	</select>
+	
+	<select id="getTotalArticleCount" parameterType="Map" resultType="int">
+	select count(seq) from board 
+	where bcode=#{bcode}
+				<if test="word != null and word !=''">
+				<choose>
+					<when test="key == 'subject'">
+						and subject like '%'||#{word}||'%'
+					</when>
+					<otherwise>
+						and ${key} = #{word}
+					</otherwise>
+				</choose>
+			</if>
+	</select>
 
 </mapper>
