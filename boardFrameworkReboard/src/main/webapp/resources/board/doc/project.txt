@@ -1,0 +1,79 @@
+pj : boardFramework
+	-src
+		-com.bit.board.admin.controller
+			BoardAdminController.java
+		
+		-com.bit.board.admin.dao
+			BoardAdminDao.java (I)
+		
+		-com.bit.board.admin.service
+			BoardAdminService.java (I)
+			BoardAdminServiceImpl.java
+		
+		-com.bit.board.admin.model
+			BoardTypeDto.java
+			CategoryDto.java
+			BoardListDto.java
+		
+		-com.bit.board.controller
+			AlbumController.java
+			BbsController.java
+			BoardController.java
+			ReboardController.java
+			MemoController.java (ajax 사용으로 나머지와는 좀 다름)
+		
+		-com.bit.board.dao
+			AlbumDao.java (I)
+			BbsDao.java (I)
+			BoardDao.java (I)
+			ReboardDao.java (I)
+			MemoDao.java (I)
+		
+		-com.bit.board.service
+			AlbumService.java (I)
+			AlbumServiceIpml.java
+			BbsService.java (I)
+			BbsServiceIpml.java
+			BoardService.java (I)
+			BoardServiceIpml.java
+			ReboardService.java (I)
+			ReboardServiceIpml.java
+			MemoService.java (I)
+			MemoServiceIpml.java
+		
+		-com.bit.board.common.dao (페이징 등. 공통으로 쓰는 거니 controller 필요 x)
+			CommonDao.java (I)
+			
+		-com.bit.board.common.service
+			CommonService.java (I)
+			CommonServiceImpl.java
+			
+		-com.bit.board.model
+			AlbumDto.java
+			BbsDto.java
+			BoardDto.java
+			ReboardDto.java
+			MemoDto.java			
+		
+		-com.bit.config.mybatis (스프링 설정은 WEB-INF/spring에서, 나머지는 classpath로 뺌)
+		
+		-com.bit.util
+			PageNavigation.java
+	
+	-web(webapp) 내부 목록
+		-css, img, js
+		-doc: 각종 문서(참고문서)
+				-connection pool
+				-list select: 오라클 랭크 함수(n페이지에 갖고 올 게시글 계산)
+				-PageNavigation: 페이징 함수(계산은 서비스에서)
+				-board_create: db 테이블 생성 및 데이터 insert
+		------------------------jsp------------------------
+		-common: public.jsp
+		-admin: 게시판 관리자
+			-boardmenu.jsp
+		-album: 사진 게시판
+		-bbs: 자료실
+		-board: 공지사항, 한줄게시판, 일반게시판
+		-reboard: 답변 게시판 (reply.jsp는 여기에만 있고 다른 게시판에는 없을 것임)
+		
+		-index.jsp

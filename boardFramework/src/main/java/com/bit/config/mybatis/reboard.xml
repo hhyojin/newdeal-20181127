@@ -39,11 +39,29 @@
 					</otherwise>
 				</choose>
 			</if>
-			order by b.seq desc
+			order by r.ref desc, r.step
 		) a
 	where rownum &lt;= #{end}
 	) b
 	where b.rnum > #{start}
 	</select>
+	
+	<update id="updateStep" parameterType="reboardDto">
+		update reboard set step=step+1 where ref=#{ref} and step > #{step}
+	</update>
+	
+	<insert id="replyArticle" parameterType="reboardDto">
+		insert all
+			into board (seq, name, id, email, subject, content, hit, logtime, bcode)
+			values (#{seq}, #{name}, #{id}, #{email}, #{subject}, #{content}, 0, sysdate, #{bcode})
+			into reboard (rseq, seq, ref, lev, step, pseq, reply)
+			values (reboard_rseq.nextval, #{seq}, #{ref}, #{lev} + 1, #{step} + 1, #{seq}, 0)
+		select * from dual
+	</insert>
+	
+	<update id="updateReply" parameterType="int">
+		update reboard set reply=reply+1 where seq=#{pseq}
+	</update>	
+	
 
 </mapper>
