@@ -49,6 +49,11 @@ public class ReboardServiceImpl implements ReboardService{
 		}
 		return reboardDto;
 	}
+	
+	@Override
+	public ReboardDto getArticle(int seq) {	//view 하면 replace에 조회수도 늘어서 따로 뺌
+		return sqlsession.getMapper(ReboardDao.class).viewArticle(seq);
+	}
 
 	@Override
 	public int replyArticle(ReboardDto reboardDto) {
@@ -66,5 +71,6 @@ public class ReboardServiceImpl implements ReboardService{
 		
 		
 	}
+
 
 }

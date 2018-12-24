@@ -44,7 +44,7 @@
 			align="absmiddle"> <b>제목</b></td>
 		<td colspan="5"><input name="subject" id="subject" type="text"
 			size="76" maxlength="150" class="inp_02" style="width: 300px"
-			value=""><img src="${root}/img/board/i_info.gif" width="12"
+			value="Re: + ${article.subject}"><img src="${root}/img/board/i_info.gif" width="12"
 			height="11" border="0" align="absmiddle" vspace="8"
 			style="margin: 3 3 0 6"><font class="stext">최대 한글 75자,
 		영문 150자</font><br>
@@ -53,7 +53,12 @@
 		<td width="620" nowrap style="padding-left: 8px; padding-top: 10px"
 			colspan="5"><img src="${root}/img/board/e_dot.gif" width="4"
 			height="4" border="0" align="absmiddle"> <b>글내용</b> <textarea
-			name="content" class="inp_02" cols="67" rows="25" scrollbars="no"></textarea>
+			name="content" class="inp_02" cols="67" rows="25" scrollbars="no">
+			
+			
+------------------------------------[원글]
+${article.content}
+			</textarea>
 		</td>
 	</tr>
 </table>

@@ -84,5 +84,15 @@ public class ReboardController {
 		
 		return "reboard/view";
 	}
+	
+	@RequestMapping(value="reply.bit", method=RequestMethod.GET)
+	public String reply(@RequestParam int seq, HttpSession session, Model model) {
+		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
+		if(memberDto != null) {
+			ReboardDto reboardDto = reboardService.viewArticle(seq);
+			model.addAttribute("article", reboardDto); //articel이 널이라면 답글 못 달게(원글러가 지웠을 수도 있으니)
+		}		
+		return "reboard/reply";
+	}
 
 }
