@@ -40,11 +40,11 @@
 	<mvc:resources mapping="/img/**" location="/resources/board/img/" />
 
 	<!--4. 파일 업로드 -->
-	<!-- <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="defaultEncoding" value="UTF-8"/>
 		<beans:property name="maxUploadSize" value="5242880"/>
 		<beans:property name="maxInMemorySize" value="1048576"/>
-	</beans:bean> -->
+	</beans:bean>
 
 
 	<!-- 3. view resolver 설정 -->
