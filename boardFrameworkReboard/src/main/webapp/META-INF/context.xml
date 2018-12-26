@@ -5,10 +5,9 @@
       factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
       driverClassName="oracle.jdbc.driver.OracleDriver"
       url="jdbc:oracle:thin:@192.168.0.80:1521:xe" username="bitboard"
-      password="bitboard" maxActive="20" maxIdle="10" maxWait="-1"
+      password="bitboard" maxActive="20" maxIdbble="10" maxWait="-1"
       removeAbandoned="true" removeAbandonedTimeout="60"
       logAbandoned="true" />
 
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
-
 </Context>

@@ -12,13 +12,18 @@
 	<context:component-scan base-package="com.bit.**.service"/>
 	
 	<!-- 2. mybatis 설정 -->
-	<bean id="ds" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+	<!-- <bean id="ds" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
 		<property name="url" value="jdbc:oracle:thin:@192.168.0.80:1521:xe"></property>
 		<property name="username" value="bitboard"></property>
 		<property name="password" value="bitboard"></property>	
-	</bean>
+	</bean> -->
 	
+	<!-- 2-2. ConnectionPooling을 이용한 mybatis 설정 -->
+	<bean id="ds" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/bit"></property>
+	</bean>
+
 	<bean id="ssfb" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds"></property>
 		<property name="configLocation" value="classpath:com/bit/config/mybatis/configuration.xml" />

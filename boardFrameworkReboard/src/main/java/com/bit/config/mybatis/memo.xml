@@ -5,5 +5,27 @@
   
 <mapper namespace="com.bit.board.dao.MemoDao">
 
+<insert id="writeMemo" parameterType="memoDto">
+insert into memo (mseq, seq, id, name, mcontent, mtime)
+values (memo_mseq.nextval, #{seq}, #{id}, #{name}, #{mcontent}, sysdate)
+</insert>
+
+<select id="listMemo" parameterType="int" resultType="memoDto">
+select mseq, seq, id, name, mcontent, mtime
+from memo
+where seq=#{seq}
+order by mseq
+</select>
+
+<insert id="modifyMemo" parameterType="memoDto">
+update memo 
+set mcontent = #{mcontent}
+where mseq=#{mseq}
+</insert>
+
+<delete id="deleteMemo" parameterType="int">
+delete memo
+where mseq=#{mseq}
+</delete>
 
 </mapper>

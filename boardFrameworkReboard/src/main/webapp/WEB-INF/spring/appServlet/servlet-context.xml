@@ -19,7 +19,7 @@
 	<context:component-scan base-package="com.bit.board.**.controller"></context:component-scan>
 	
 	<!--  6 ajax 사용 시, json 한글 깨짐 방지 -->
-	<!-- <mvc:annotation-driven>
+	<mvc:annotation-driven>
 		<mvc:message-converters>
 			<beans:bean class="org.springframework.http.converter.StringHttpMessageConverter">
 				<beans:property name="supportedMediaTypes">
@@ -30,7 +30,7 @@
 				</beans:property>
 			</beans:bean>
 		</mvc:message-converters>
-	</mvc:annotation-driven> -->
+	</mvc:annotation-driven>
 	
 	<!-- 2. resources mapping 설정 -->
 	<!-- dispatcher 서블릿이 안 받도록 하는 것 -->
