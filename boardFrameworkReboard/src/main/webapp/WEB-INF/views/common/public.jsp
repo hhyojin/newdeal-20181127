@@ -26,3 +26,4 @@
 	<input type="hidden" id="word" name="word" value="${word}">
 	<input type="hidden" id="seq" name="seq" value="">
 </form>
+
