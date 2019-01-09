@@ -1,0 +1,17 @@
+{
+  "name": "nodetest3-190108",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "aa"
+  },
+  "keywords": [
+    "dd"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "formidable": "^1.2.1"
+  }
+}

@@ -1,0 +1,19 @@
+<html>
+<head>
+   <meta charset="UTF-8" />
+    <title>EJS Example</title>
+</head>
+<body>
+    <h1> <%= title %> </h1>
+    
+    <ul>
+    <% cats.forEach(function(item) { %>
+        <li>
+            <img src="image/<%= item.image %>">
+            <%= item.title %> </li>
+    <% }); %>
+    </ul>
+
+
+</body>
+</html>

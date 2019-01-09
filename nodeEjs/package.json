@@ -1,14 +1,15 @@
 {
-  "name": "nodetest2",
+  "name": "express-template",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "ejsServer.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "async": "^2.6.1"
+    "ejs": "^2.3.4",
+    "express": "^4.13.3"
   }
 }
