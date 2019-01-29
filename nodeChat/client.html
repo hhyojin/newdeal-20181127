@@ -1,0 +1,28 @@
+<html>
+<head>
+<meta charset="UTF8">
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io();
+    
+    socket.on('connect', function() {
+       console.log('서버와 연결'); 
+    });    
+
+</script>
+</head>
+<body>
+<h1>Socket.IO Sample</h1>
+<ul>
+<script>
+socket.on('message', function(msg) { //message라는 이벤트를 받겠다
+                                      //서버가 emit으로 message란 이벤트 보냄.
+                                      //msg는 서버가 보낸 메시지
+    document.writeln('<li>');                                
+    document.writeln(msg);
+    document.writeln('</li>');
+});
+</script>
+</li>
+</body>
+</html>

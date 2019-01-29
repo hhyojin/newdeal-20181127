@@ -1,0 +1,17 @@
+{
+  "name": "kr.bit.chatt",
+  "version": "0.0.1",
+  "description": "node",
+  "main": "app.js",
+  "scripts": {
+    "test": "node"
+  },
+  "author": "kglim",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "serve-static": "^1.13.2",
+    "socket.io": "^2.2.0"
+  }
+}
